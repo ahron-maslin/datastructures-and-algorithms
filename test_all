@@ -1,0 +1,3 @@
+#!/bin/sh
+
+for file in ./tests/*; do echo "Testing $file"; $file; done; 
