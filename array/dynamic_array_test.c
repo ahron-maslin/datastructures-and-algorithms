@@ -26,15 +26,9 @@ int main(){
   assert(is_empty(arr));
   assert(arr->capacity == 9);
 
-  add(arr, 1);
-  add(arr, 2);
-  add(arr, 3);
-  add(arr, 4);
-  add(arr, 5);
-  add(arr, 6);
-  add(arr, 7);
-  add(arr, 8);
-  add(arr, 9);
+  for (int i = 1; i < 10; i++) {
+    add(arr, i);
+  }
 
   assert(size(arr) == 9);
   assert(get(arr, 2) == 3);

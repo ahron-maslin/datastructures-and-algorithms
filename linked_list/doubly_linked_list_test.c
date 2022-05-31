@@ -37,8 +37,8 @@ int main() {
     printf("--->%d", temp->data);
     temp = temp->prev;
   }
-  
 */
+  
   destroy(head);
   printf("All tests pass!\n");
   return 0;

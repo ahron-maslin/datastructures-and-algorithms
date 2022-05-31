@@ -20,8 +20,6 @@ typedef struct LINKED_LIST_STACK {
   struct LINKED_LIST_STACK* next;
 } ll_stack_t;
 
-ll_stack_t* init_ll_stack(int data);
-
 void destroy(ll_stack_t* stack);
 
 void push(ll_stack_t** stack, int item);

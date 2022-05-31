@@ -13,6 +13,7 @@ void destroy(dnode_t *list) {
   if (!list) {
     return;
   }
+  // recursively free next pointer
   destroy(list->next);
   free(list);
   list = NULL;
@@ -24,6 +25,7 @@ void push(dnode_t **head, int data) {
     *head = new_head;
     return;
   }
+  // pointer rearrangement
   new_head->prev = NULL;
   new_head->next = *head;
   (*head)->prev = new_head;
@@ -81,7 +83,7 @@ int peek_at(dnode_t* list, int index) {
     }
     temp = temp->next;
   }
-  if (temp->next == NULL) {
+  if (temp->next == NULL) { // if index is larger than ll
     return -1;
   }
   data = temp->data;
@@ -96,16 +98,16 @@ int remove_first(dnode_t **head) {
     exit(EXIT_FAILURE);
   }
   
-  if ((*head)->next == NULL) {
+  if ((*head)->next == NULL) {  // if there is only one node
     data = (*head)->data;
     free(*head);
     return data;
   }
-  next_node = (*head)->next;
+  next_node = *head;
   data = (*head)->data;
-  free(*head);
-  *head = next_node;
-  next_node->prev = NULL;
+  *head = (*head)->next;
+  (*head)->prev = NULL;
+  free(next_node);
   return data;
 }
 

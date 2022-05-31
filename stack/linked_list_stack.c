@@ -2,7 +2,7 @@
 
 int nodes_count = 0;
 
-ll_stack_t* init_ll_stack(int data) {
+static ll_stack_t* init_ll_stack(int data) {
   ll_stack_t* stack = malloc(sizeof(struct LINKED_LIST_STACK));
   stack->data = data;
   stack->next = NULL;
