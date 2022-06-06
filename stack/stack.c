@@ -1,7 +1,7 @@
 #include "stack.h"
 
 stack_t* init_stack(int size) {
-  stack_t* stack = malloc(sizeof(struct STACK) * size);
+  stack_t* stack = malloc(sizeof(struct STACK));
   stack->size = size;
   stack->top = -1;
   stack->items = malloc(sizeof(int) * size);
