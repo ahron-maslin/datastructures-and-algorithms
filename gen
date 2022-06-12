@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mkdir $1
+touch ./$1/$1{.c,.h,_test.c}
