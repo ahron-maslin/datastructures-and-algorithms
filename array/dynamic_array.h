@@ -18,7 +18,7 @@ Deletion:  O(n)
 */
 
 typedef struct DYNAMIC_ARRAY {
-  int* items;
+  int* array;
   int capacity;
   int size;
 } dynamic_array_t;

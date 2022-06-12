@@ -5,11 +5,11 @@ static void double_capacity(dynamic_array_t* array){
   int *new_items = (int *)malloc(sizeof(int) * new_cap);
 
   for (int i = 0; i < array->size; i++){
-    new_items[i] = array->items[i];
+    new_items[i] = array->array[i];
   }
 
-  free(array->items);
-  array->items = new_items;
+  free(array->array);
+  array->array = new_items;
   array->capacity = new_cap;
 }
 
@@ -18,11 +18,11 @@ static void half_capacity(dynamic_array_t* array){
   int *new_items = (int *)malloc(sizeof(int) * new_cap);
 
   for (int i = 0; i < min(array->size, new_cap); i++){
-    new_items[i] = array->items[i];
+    new_items[i] = array->array[i];
   }
 
-  free(array->items);
-  array->items = new_items;
+  free(array->array);
+  array->array = new_items;
   array->capacity = new_cap;
   array->size = min(array->size, new_cap);
 }
@@ -35,7 +35,7 @@ dynamic_array_t* array_init(int capacity){
   }
   array->size = 0;
   array->capacity = capacity;
-  array->items = (int*)malloc(sizeof(int) * array->capacity);
+  array->array = (int*)malloc(sizeof(int) * array->capacity);
 
   return array;
 }
@@ -53,7 +53,7 @@ int get(dynamic_array_t *array, int index){
     fprintf(stderr, "Out of index!");
     exit(EXIT_FAILURE);
   }
-  return array->items[index]; 
+  return array->array[index]; 
 }
 
 void set(dynamic_array_t *array, int index, int item){
@@ -61,11 +61,11 @@ void set(dynamic_array_t *array, int index, int item){
     fprintf(stderr, "Out of index!");
     exit(EXIT_FAILURE);
   }
-  array->items[index] = item; 
+  array->array[index] = item; 
 }
 
 void destroy(dynamic_array_t *array){
-  free(array->items);
+  free(array->array);
   free(array);
 }
 
@@ -73,7 +73,7 @@ void insert(dynamic_array_t* array, int item){
   if (array->size >= array->capacity){
     double_capacity(array);
   }
-  array->items[array->size++] = item;
+  array->array[array->size++] = item;
 }
 
 void insert_at(dynamic_array_t *array, int index, int item){
@@ -87,9 +87,9 @@ void insert_at(dynamic_array_t *array, int index, int item){
   }
 
   for (int i = array->size; i > index; i--){
-    array->items[i] = array->items[i - 1];
+    array->array[i] = array->array[i - 1];
   }
-  array->items[index] = item;
+  array->array[index] = item;
   array->size++;
 }
 
@@ -97,9 +97,9 @@ int remove_at(dynamic_array_t* array, int index){
   if (index >= array->size || index < 0){
     return -1;
   }
-  int data = array->items[index];
+  int data = array->array[index];
   for (int i = index; i < array->size - 1; i++){
-    array->items[i] = array->items[i + 1];
+    array->array[i] = array->array[i + 1];
   }
   array->size--;
 
@@ -116,7 +116,7 @@ void remove_element(dynamic_array_t* array, int item){
     return;
   }
   for (int i = index; i < array->size - 1; i++){
-    array->items[i] = array->items[i + 1];
+    array->array[i] = array->array[i + 1];
   }
   array->size--;
   if (array->size * 4 < array->capacity) {
@@ -126,7 +126,7 @@ void remove_element(dynamic_array_t* array, int item){
 
 int index_of(dynamic_array_t *array, int item){
   for (int i = 0; i < array->size; i++){
-    if (array->items[i] == item){
+    if (array->array[i] == item){
       return i;
     }
   }
