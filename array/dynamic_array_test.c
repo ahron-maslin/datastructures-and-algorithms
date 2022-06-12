@@ -27,7 +27,7 @@ int main(){
   assert(arr->capacity == 9);
 
   for (int i = 1; i < 10; i++) {
-    add(arr, i);
+    insert(arr, i);
   }
 
   assert(size(arr) == 9);
@@ -50,9 +50,9 @@ int main(){
   assert(contains(arr, 3));
   assert(!contains(arr, 300));
 
-  add(arr, 10);
-  add(arr, 11);
-  add(arr, 12);
+  insert(arr, 10);
+  insert(arr, 11);
+  insert(arr, 12);
 
   assert(arr->capacity == 18);
   assert(size(arr) == 10);

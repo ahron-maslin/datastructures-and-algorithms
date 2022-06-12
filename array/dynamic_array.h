@@ -32,7 +32,7 @@ bool is_empty(dynamic_array_t *array);
 int get(dynamic_array_t *array, int index);
 void set(dynamic_array_t *array, int index, int item);
 
-void add(dynamic_array_t* array, int item);
+void insert(dynamic_array_t* array, int item);
 void insert_at(dynamic_array_t *array, int index, int item);
 
 int remove_at(dynamic_array_t *array, int index);

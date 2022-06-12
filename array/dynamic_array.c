@@ -69,7 +69,7 @@ void destroy(dynamic_array_t *array){
   free(array);
 }
 
-void add(dynamic_array_t* array, int item){
+void insert(dynamic_array_t* array, int item){
   if (array->size >= array->capacity){
     double_capacity(array);
   }
