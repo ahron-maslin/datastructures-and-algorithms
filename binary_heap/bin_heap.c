@@ -114,6 +114,7 @@ int peek(heap_t* heap) {
 }
 
 int delete(void(*fp)(heap_t*), heap_t* heap) {
-  remove_at(heap, 0);
+  int data = remove_at(heap, 0);
   fp(heap);
+  return data;
 }
