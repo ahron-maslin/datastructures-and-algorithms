@@ -8,7 +8,7 @@
 
 
 /*
-Binary Heap (min):
+Binary Heap (max):
 
 - parent(i) = [i/2]
 - left − child(i) = 2i
