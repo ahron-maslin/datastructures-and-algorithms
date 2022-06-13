@@ -1,5 +1,10 @@
 #include "priority_queue.h"
 
-void pqueue_insert(void(*funcp)(priority_queue_t*), priority_queue_t* pqueue, int item) {
-  heap_insert(*funcp, pqueue, item);
+
+void enqueue(priority_queue_t* pqueue, int data) {
+  heap_insert(pqueue, data);
+}
+
+int dequeue(priority_queue_t* pqueue) {
+  return delete(pqueue);
 }
