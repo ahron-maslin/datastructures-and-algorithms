@@ -27,8 +27,12 @@ static void half_capacity(dynamic_array_t* array){
   array->size = min(array->size, new_cap);
 }
 
-dynamic_array_t* array_init(int capacity){
-  dynamic_array_t *array = (dynamic_array_t*) malloc(sizeof(struct DYNAMIC_ARRAY));
+dynamic_array_t* array_init(int capacity) {
+  if (capacity <= 0) {
+    fprintf(stderr, "Array cannot have a capacity less than zero!");
+    exit(EXIT_FAILURE);
+  }
+  dynamic_array_t *array = (dynamic_array_t*)malloc(sizeof(struct DYNAMIC_ARRAY));
   if (array == NULL){
     fprintf(stderr, "Not enough memory!");
     exit(EXIT_FAILURE);
