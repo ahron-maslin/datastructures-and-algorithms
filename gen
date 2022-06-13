@@ -1,4 +1,7 @@
 #!/bin/sh
 
 mkdir $1
-touch ./$1/$1{.c,.h,_test.c}
+cp .templates/* $1/
+mv $1/template.c $1/$1.c
+mv $1/template.h $1/$1.h
+mv $1/template_test.c $1/$1_test.c
