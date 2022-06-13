@@ -22,16 +22,16 @@ Naive removing:   O(n)
 Naive contains:   O(n)
 */
 
+// shift up / shift down --> log n
+
 typedef dynamic_array_t heap_t;
 
 void build_heap_max(heap_t* heap);
-void build_heap_min(heap_t* heap);
-bool isMaxHeap(int* arr, int n, int i);
-bool isMinHeap(int* arr, int n, int i);
+bool is_max_heap(int* arr, int n, int i);
 
-void heap_insert(void(*funcp)(heap_t*), heap_t* heap, int item);
+void heap_insert(heap_t* heap, int item);
+void heap_insert_log(heap_t* heap, int item);
 int peek(heap_t* heap);
-int delete(void(*funcp)(heap_t*), heap_t* heap);
-
+int delete(heap_t* heap);
 
 #endif
