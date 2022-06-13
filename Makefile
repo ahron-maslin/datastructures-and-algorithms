@@ -25,7 +25,7 @@ queue: ./queue/queue*.c
 	gcc -o ./tests/$@ $^
 
 
-priority_queue: ./priority_queue/priority_queue*.c
+priority_queue: ./priority_queue/priority_queue*.c ./array/dynamic_array.c ./binary_heap/bin_heap.c
 	gcc -o ./tests/$@ $^
 	
 
