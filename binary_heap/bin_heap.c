@@ -64,8 +64,8 @@ bool is_max_heap(int* arr, int n, int i) {
 }
 
 
-void heap_insert(heap_t* heap, int item) {
-  insert(heap, item);
+void heap_insert(heap_t* heap, int data) {
+  insert(heap, data);
   max_heap_fixup(heap, size(heap));
 }
 

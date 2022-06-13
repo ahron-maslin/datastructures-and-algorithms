@@ -29,8 +29,7 @@ typedef dynamic_array_t heap_t;
 void build_heap_max(heap_t* heap);
 bool is_max_heap(int* arr, int n, int i);
 
-void heap_insert(heap_t* heap, int item);
-void heap_insert_log(heap_t* heap, int item);
+void heap_insert(heap_t* heap, int data);
 int peek(heap_t* heap);
 int delete(heap_t* heap);
 
