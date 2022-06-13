@@ -14,11 +14,9 @@ int main() {
   }
 
   build_heap_max(heap);
-
   assert(isMaxHeap(heap->array, size(heap), 0));
 
   build_heap_min(heap);
-
   assert(isMinHeap(heap->array, size(heap), 0));
 
   heap_insert(&build_heap_min, heap, 50);
