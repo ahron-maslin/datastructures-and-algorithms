@@ -30,14 +30,14 @@ int size(dynamic_array_t *array);
 bool is_empty(dynamic_array_t *array);
 
 int get(dynamic_array_t *array, int index);
-void set(dynamic_array_t *array, int index, int item);
+void set(dynamic_array_t *array, int index, int data);
 
-void insert(dynamic_array_t* array, int item);
-void insert_at(dynamic_array_t *array, int index, int item);
+void insert(dynamic_array_t* array, int data);
+void insert_at(dynamic_array_t *array, int index, int data);
 
 int remove_at(dynamic_array_t *array, int index);
-void remove_element(dynamic_array_t* array, int item);
+void remove_element(dynamic_array_t* array, int data);
 
-int index_of(dynamic_array_t *array, int item);
-bool contains(dynamic_array_t *array, int item);
+int index_of(dynamic_array_t *array, int data);
+bool contains(dynamic_array_t *array, int data);
 #endif

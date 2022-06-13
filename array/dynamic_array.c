@@ -60,12 +60,12 @@ int get(dynamic_array_t *array, int index){
   return array->array[index]; 
 }
 
-void set(dynamic_array_t *array, int index, int item){
+void set(dynamic_array_t *array, int index, int data){
   if (index >= array->size || index < 0){
     fprintf(stderr, "Out of index!");
     exit(EXIT_FAILURE);
   }
-  array->array[index] = item; 
+  array->array[index] = data; 
 }
 
 void destroy(dynamic_array_t *array){
@@ -73,14 +73,14 @@ void destroy(dynamic_array_t *array){
   free(array);
 }
 
-void insert(dynamic_array_t* array, int item){
+void insert(dynamic_array_t* array, int data){
   if (array->size >= array->capacity){
     double_capacity(array);
   }
-  array->array[array->size++] = item;
+  array->array[array->size++] = data;
 }
 
-void insert_at(dynamic_array_t *array, int index, int item){
+void insert_at(dynamic_array_t *array, int index, int data){
   if (index >= array->size || index < 0){
     fprintf(stderr, "Out of index!");
     exit(EXIT_FAILURE);
@@ -93,7 +93,7 @@ void insert_at(dynamic_array_t *array, int index, int item){
   for (int i = array->size; i > index; i--){
     array->array[i] = array->array[i - 1];
   }
-  array->array[index] = item;
+  array->array[index] = data;
   array->size++;
 }
 
@@ -113,8 +113,8 @@ int remove_at(dynamic_array_t* array, int index){
   return data;
 }
 
-void remove_element(dynamic_array_t* array, int item){
-  int index = index_of(array, item);
+void remove_element(dynamic_array_t* array, int data){
+  int index = index_of(array, data);
   if (index >= array->size || index < 0)
   {
     return;
@@ -128,15 +128,15 @@ void remove_element(dynamic_array_t* array, int item){
   }
 }
 
-int index_of(dynamic_array_t *array, int item){
+int index_of(dynamic_array_t *array, int data){
   for (int i = 0; i < array->size; i++){
-    if (array->array[i] == item){
+    if (array->array[i] == data){
       return i;
     }
   }
   return -1;
 }
 
-bool contains(dynamic_array_t *array, int item){
-  return index_of(array, item) != -1;
+bool contains(dynamic_array_t *array, int data){
+  return index_of(array, data) != -1;
 }
