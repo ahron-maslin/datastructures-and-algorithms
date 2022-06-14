@@ -37,6 +37,18 @@ static void max_heap_fixup(heap_t* heap, int size) {
     }
 }
 
+static void max_heap_fidown(heap_t* heap, int size) {
+  while (2*size <= heap->size) {
+  int j = 2*size;
+  if (j < heap->size && heap->array[j+1] < heap->array[j])
+  j++;
+  if (heap->array[size] <= heap->array[j])
+  break;
+  swap(&heap->array[size], &heap->array[j]);
+  size = j;
+  }
+}
+
 
 void build_heap_max(heap_t* heap) {
   int last_non_leaf_node = (size(heap) / 2) - 1;
@@ -75,7 +87,12 @@ int peek(heap_t* heap) {
 }
 
 int delete(heap_t* heap) {
-  int data = remove_at(heap, 0);
-  build_heap_max(heap);
-  return data;
+  int data = heap->array[0];
+  heap->array[0] = heap->array[--heap->size];
+  //int data = remove_at(heap, 0);
+
+  //build_heap_max(heap); // fixdown
+
+  max_heap_fidown(heap, 0);
+    return data;
 }

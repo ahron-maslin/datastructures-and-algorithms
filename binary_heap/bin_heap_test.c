@@ -93,8 +93,9 @@ int main() {
 
   assert(is_max_heap(heap5->array, size(heap5), 0));
   //printf("full time: %f\n", (double)(end5 - start5) / CLOCKS_PER_SEC);
+  assert(!size(heap5));
 
-  destroy(heap4);
+  destroy(heap5);
 
 
   
