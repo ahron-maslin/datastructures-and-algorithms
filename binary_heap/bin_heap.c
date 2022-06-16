@@ -37,16 +37,22 @@ static void max_heap_fixup(heap_t* heap, int size) {
     }
 }
 
-static void max_heap_fidown(heap_t* heap, int size) {
-  while (2*size <= heap->size) {
-  int j = 2*size;
-  if (j < heap->size && heap->array[j+1] < heap->array[j])
-  j++;
-  if (heap->array[size] <= heap->array[j])
-  break;
-  swap(&heap->array[size], &heap->array[j]);
-  size = j;
+static void max_heap_fixdown(heap_t* heap, int index) {
+  // implementing this will change delete operation from O(n) to O(log n)
+  while (2 * index <= heap->size) {
+    int j = 2 * index;
+    if (j < heap->size && heap->array[j] < heap->array[j + 1]) {
+    j++;
   }
+  
+  if (heap->array[index] >= heap->array[j]) {
+    break;
+  }
+  
+  swap(&heap->array[index], &heap->array[j]);
+  index = j;
+  }
+  
 }
 
 
@@ -89,10 +95,7 @@ int peek(heap_t* heap) {
 int delete(heap_t* heap) {
   int data = heap->array[0];
   heap->array[0] = heap->array[--heap->size];
-  //int data = remove_at(heap, 0);
-
-  //build_heap_max(heap); // fixdown
-
-  max_heap_fidown(heap, 0);
+  build_heap_max(heap); // fixdown
+  //max_heap_fixdown(heap, 0);
     return data;
 }
