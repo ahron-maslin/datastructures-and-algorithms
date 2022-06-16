@@ -18,5 +18,6 @@ typedef dynamic_array_t priority_queue_t;
 
 void enqueue(priority_queue_t* pqueue, int data);
 int dequeue(priority_queue_t* pqueue);
+void change_priority(priority_queue_t* pqueue, int index, int priority);
 
 #endif

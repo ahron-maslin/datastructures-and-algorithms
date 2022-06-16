@@ -14,6 +14,10 @@ int main() {
     enqueue(pqueue, rand() % 100000);
   }
 
+  for (int i = 0; i < 100; i++) {
+    change_priority(pqueue, rand() % 9999, rand() % 100000);
+  }
+
   assert(is_max_heap(pqueue->array, size(pqueue), 0));
 
   assert(dequeue(pqueue) >= dequeue(pqueue));
