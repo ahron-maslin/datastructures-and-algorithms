@@ -5,3 +5,6 @@ cp .templates/* $1/
 mv $1/template.c $1/$1.c
 mv $1/template.h $1/$1.h
 mv $1/template_test.c $1/$1_test.c
+
+sed -i "1s/^/#include \"$1.h\"\n/" ./$1/$1.c
+sed -i "1s/^/#include \"$1.h\"\n/" ./$1/$1_test.c
