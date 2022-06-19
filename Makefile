@@ -1,5 +1,6 @@
 all: dynamic_array linked_list doubly_linked_list \
-	stack linked_list_stack queue heap priority_queue
+	stack linked_list_stack queue heap priority_queue \
+	heap_min
 
 dynamic_array: ./array/*.c
 	gcc -o ./tests/$@ $^
@@ -31,6 +32,11 @@ priority_queue: ./priority_queue/priority_queue*.c ./array/dynamic_array.c ./bin
 
 heap: ./binary_heap/bin_heap*.c ./array/dynamic_array.c
 	gcc -o ./tests/$@ $^ 
+
+
+heap_min: ./heap_min/heap_min*.c ./array/dynamic_array.c
+	gcc -o ./tests/$@ $^ 
+
 
 test:
 	./test_all
