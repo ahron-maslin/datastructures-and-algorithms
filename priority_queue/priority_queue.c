@@ -6,7 +6,7 @@ void enqueue(priority_queue_t* pq, int data) {
 }
 
 int dequeue(priority_queue_t* pq) {
-  return delete(pq);
+  return poll(pq);
 }
 
 void change_priority(priority_queue_t* pq, int index, int priority) {

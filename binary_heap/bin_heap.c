@@ -38,7 +38,7 @@ static void max_heap_fixup(heap_t* heap, int size) {
 }
 
 static void max_heap_fixdown(heap_t* heap, int index) {
-  // implementing this will change delete operation from O(n) to O(log n)
+  // implementing this will change poll operation from O(n) to O(log n)
   while (2 * index+1 < heap->size) {
     int j = 2 * index+1;
     if (j + 1 < heap->size && heap->array[j] < heap->array[j + 1]) {
@@ -92,7 +92,7 @@ int peek(heap_t* heap) {
   return heap->array[0];
 }
 
-int delete(heap_t* heap) {
+int poll(heap_t* heap) {
   int data = heap->array[0];
   heap->array[0] = heap->array[--heap->size];
   max_heap_fixdown(heap, 0);

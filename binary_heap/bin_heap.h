@@ -31,6 +31,6 @@ bool is_max_heap(int* arr, int n, int i);
 
 void heap_insert(heap_t* heap, int data);
 int peek(heap_t* heap);
-int delete(heap_t* heap);
+int poll(heap_t* heap);
 
 #endif

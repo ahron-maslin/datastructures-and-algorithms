@@ -90,7 +90,7 @@ int peek(min_heap_t* heap) {
 }
 
 
-int delete(min_heap_t* heap) {
+int poll(min_heap_t* heap) {
   int data = heap->array[0];
   heap->array[0] = heap->array[--heap->size];
   minheap_fixdown(heap, 0);

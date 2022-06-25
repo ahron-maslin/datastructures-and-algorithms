@@ -32,6 +32,6 @@ bool is_min_heap(int* arr, int n, int i);
 
 void heap_insert(min_heap_t* heap, int data);
 int peek(min_heap_t* heap);
-int delete(min_heap_t* heap);
+int poll(min_heap_t* heap);
 
 #endif

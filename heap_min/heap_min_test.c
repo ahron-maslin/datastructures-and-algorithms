@@ -19,7 +19,7 @@ int main() {
   heap_insert(heap, 800);
   assert(is_min_heap(heap->array, size(heap), 0));
 
-  delete(heap);
+  poll(heap);
   assert(is_min_heap(heap->array, size(heap), 0));
 
 
@@ -88,7 +88,7 @@ int main() {
   clock_t end5 = clock();
 
   for (int i = 0; i < 10000; i++) {
-    delete(heap5);
+    poll(heap5);
   }
 
   assert(is_min_heap(heap5->array, size(heap5), 0));
