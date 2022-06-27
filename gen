@@ -8,3 +8,5 @@ mv $1/template_test.c $1/$1_test.c
 
 sed -i "1s/^/#include \"$1.h\"\n/" ./$1/$1.c
 sed -i "1s/^/#include \"$1.h\"\n/" ./$1/$1_test.c
+sed -i "1s/^/#define _$(echo $1 | tr '[:lower:]' '[:upper:]')_H\n/" ./$1/$1.h
+sed -i "1s/^/#ifndef _$(echo $1 | tr '[:lower:]' '[:upper:]')_H\n/" ./$1/$1.h

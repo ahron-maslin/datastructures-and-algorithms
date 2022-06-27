@@ -1,5 +1,3 @@
-#ifndef _H
-#define _H
 
 #include <stdio.h>
 #include <stdlib.h>
