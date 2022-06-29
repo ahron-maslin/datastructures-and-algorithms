@@ -1,6 +1,6 @@
 TARGETS= dynamic_array linked_list doubly_linked_list \
 	stack linked_list_stack queue heap priority_queue \
-	heapmin
+	heapmin union_find
 
 
 all: $(TARGETS)
@@ -24,13 +24,15 @@ heap: ./binary_heap/bin_heap*.c ./array/dynamic_array.c
 
 heapmin: ./heap_min/heap_min*.c ./array/dynamic_array.c
 
+union_find: ./union_find/union_find*.c
+
 
 $(TARGETS):
 	gcc $^ -o ./tests/$@
 
 
 test:
-	./test_all
+	./runtests
 
 
 clean: 
