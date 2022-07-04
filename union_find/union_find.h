@@ -20,7 +20,6 @@ Count Components:   O(1)
 
 typedef struct UNION_FIND {
   int* arr;
-  int* sz_arr;
   int size;
 } union_find_t;
 

@@ -34,6 +34,8 @@ int main() {
   assert(connected(uf, 9, 4));
 
   unify(uf, 8, 2);
+  unify(uf, 1, 3);
+  unify(uf, 5, 1);
 
   destroy(uf);
 
