@@ -1,6 +1,6 @@
 #include "queue.h"
 
-static node_t* init_node(int data) {
+static node_t* init_node(DATATYPE data) {
   node_t* node = malloc(sizeof(struct LL_NODE));
   node->data = data;
   node->next = NULL;
@@ -36,7 +36,7 @@ int size(queue_t* queue) {
   return queue->size;
 }
 
-void enqueue(queue_t* queue, int data) {
+void enqueue(queue_t* queue, DATATYPE data) {
   node_t* node = init_node(data);
 
   if (queue->head == NULL) {
@@ -49,7 +49,7 @@ void enqueue(queue_t* queue, int data) {
   queue->size++;
 }
 
-int dequeue(queue_t* queue) {
+DATATYPE dequeue(queue_t* queue) {
   if (queue->head == NULL) {
     fprintf(stderr, "Cannot dequeue - queue is NULL\n");
     exit(EXIT_FAILURE); 
@@ -65,12 +65,12 @@ int dequeue(queue_t* queue) {
   }
   
   queue->size--;
-  int data = node->data;
+  DATATYPE data = node->data;
   free(node);
   return data;
 }
 
-int peek(queue_t* queue) {
+DATATYPE peek(queue_t* queue) {
   if (queue->head == NULL) {
     fprintf(stderr, "Cannot peek - queue is NULL\n");
     exit(EXIT_FAILURE);

@@ -1,6 +1,10 @@
 #ifndef _QUEUE_H
 #define _QUEUE_H 
 
+#ifndef DATATYPE
+#define DATATYPE int
+#endif
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -17,7 +21,7 @@ Removal:     O(n)
 Is Empty:    O(1)
 */
 typedef struct LL_NODE {
-  int data;
+  DATATYPE data;
   struct LL_NODE* next;
 } node_t;
 
@@ -37,9 +41,9 @@ bool is_empty(queue_t* queue);
 
 int size(queue_t* queue);
 
-void enqueue(queue_t* queue, int data);
-int dequeue(queue_t* queue);
+void enqueue(queue_t* queue, DATATYPE data);
+DATATYPE dequeue(queue_t* queue);
 
-int peek(queue_t* queue);
+DATATYPE peek(queue_t* queue);
 
 #endif
