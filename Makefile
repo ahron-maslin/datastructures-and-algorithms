@@ -1,6 +1,6 @@
 TARGETS= dynamic_array linked_list doubly_linked_list \
 	stack linked_list_stack queue heap priority_queue \
-	heapmin union_find
+	heapmin union_find binary_tree
 
 
 all: $(TARGETS)
@@ -26,9 +26,12 @@ heapmin: ./heap_min/heap_min*.c ./array/dynamic_array.c
 
 union_find: ./union_find/union_find*.c
 
+binary_tree: DEFS=-DDATATYPE="struct BINARY_TREE_NODE *"
+binary_tree: ./binary_search_tree/binary_search_tree*.c ./queue/queue.c
+
 
 $(TARGETS):
-	gcc $^ -o ./tests/$@
+	gcc $^ -o ./tests/$@ $(DEFS)
 
 
 test:
