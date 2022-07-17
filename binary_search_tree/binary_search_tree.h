@@ -44,6 +44,6 @@ void postorder_trav(binary_tree_node_t* root);
 
 void bfs_trav(binary_tree_node_t* root);
 
-void trav(binary_tree_node_t* bst, void (*fp)(binary_tree_node_t* bst));
+void trav(binary_tree_node_t* bst, void (*fp)(binary_tree_node_t*));
 
 #endif

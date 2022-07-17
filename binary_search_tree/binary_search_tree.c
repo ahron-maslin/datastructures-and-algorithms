@@ -110,7 +110,7 @@ void delete_node(binary_tree_node_t** tree, int data) {
   return;
 }
 
-void trav(binary_tree_node_t* bst, void (*fp)(binary_tree_node_t* bst)) {
+void trav(binary_tree_node_t* bst, void (*fp)(binary_tree_node_t*)) {
   return fp(bst);
 }
 
