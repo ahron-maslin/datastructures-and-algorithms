@@ -1,5 +1,5 @@
-#ifndef _PRIORITY_QUEUE_H
-#define _PRIORITY_QUEUE_H
+#ifndef PRIORITY_QUEUE_H
+#define PRIORITY_QUEUE_H
 #include "../binary_heap/bin_heap.h"
 
 /*

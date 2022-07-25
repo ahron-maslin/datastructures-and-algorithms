@@ -1,5 +1,5 @@
-#ifndef _UNION_FIND_H
-#define _UNION_FIND_H
+#ifndef UNION_FIND_H
+#define UNION_FIND_H
 
 #include <stdio.h>
 #include <stdlib.h>

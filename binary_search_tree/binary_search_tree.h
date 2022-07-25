@@ -1,5 +1,5 @@
-#ifndef _BINARY_SEARCH_TREE_H
-#define _BINARY_SEARCH_TREE_H
+#ifndef BINARY_SEARCH_TREE_H
+#define BINARY_SEARCH_TREE_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,6 +44,6 @@ void postorder_trav(binary_tree_node_t* root);
 
 void bfs_trav(binary_tree_node_t* root);
 
-void trav(binary_tree_node_t* bst, void (*fp)(binary_tree_node_t*));
+void trav(binary_tree_node_t* bst, void (*fp)(binary_tree_node_t* bst));
 
 #endif

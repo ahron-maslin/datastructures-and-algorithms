@@ -1,5 +1,5 @@
-#ifndef _HEAP_MIN_H
-#define _HEAP_MIN_H
+#ifndef HEAP_MIN_H
+#define HEAP_MIN_H
 
 #include <stdio.h>
 #include <stdlib.h>
