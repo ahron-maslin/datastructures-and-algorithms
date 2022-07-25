@@ -1,5 +1,5 @@
-#ifndef _BIN_HEAP_H
-#define _BIN_HEAP_H
+#ifndef BIN_HEAP_H
+#define BIN_HEAP_H
 
 #include <stdio.h>
 #include <stdlib.h>

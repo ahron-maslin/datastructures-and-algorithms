@@ -19,10 +19,10 @@ int main(int argc, char argv[]) {
   delete_node(&bst, 50);
   delete_node(&bst, 25);
 
-  trav(bst, bfs_trav);
-  trav(bst, inorder_trav);
-  trav(bst, preorder_trav);
-  trav(bst, postorder_trav);
+  //trav(bst, bfs_trav);
+  //trav(bst, inorder_trav);
+  //trav(bst, preorder_trav);
+  //trav(bst, postorder_trav);
 
   destroy_bst(bst);
 
