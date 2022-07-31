@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 /*
 Singly Linked List
@@ -16,26 +17,27 @@ Remove at tail:   O(n)
 Remove in middle: O(n)
 */
 
-typedef struct LINKED_LIST
-{
-  int data;
-  struct LINKED_LIST *next;
-} node_t;
+typedef struct LINKED_LIST node_t;
 
-void destroy(node_t *list);
 
-void push(node_t **head, int data);
-void push_last(node_t **head, int data);
+void destroy(node_t *node, void (*data_destroy_fp)());
 
-int peek_first(node_t *list);
-int peek_last(node_t *list);
-int peek_at(node_t* list, int index);
+void push(node_t **head, void* data);
+void push_last(node_t **head, void* data);
 
-int remove_first(node_t **head);
-int remove_last(node_t *list);
+void* peek_first(node_t *list);
+void* peek_last(node_t *list);
+void* peek_at(node_t* list, int index);
 
-int remove_at(node_t **list, int index);
-void remove_value(node_t **list, int data);
+void* remove_first(node_t **head);
+void* remove_last(node_t *list);
 
-bool contains(node_t *list, int data);
+void* remove_at(node_t **list, int index);
+void remove_value(node_t **list, void* data2, bool(*cmp)(void* data1, void* data2));
+
+bool contains(node_t *list, void* data2, bool (*comparator)(void* data1, void* data2));
+
+node_t* get_next_node(node_t* list);
+
+void* node_data(node_t* node);  
 #endif

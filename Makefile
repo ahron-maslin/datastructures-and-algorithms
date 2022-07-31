@@ -1,6 +1,10 @@
+ifdef D
+	CCFLAGS += -DDEBUG -g
+endif
+
 TARGETS= dynamic_array linked_list doubly_linked_list \
 	stack linked_list_stack queue heap priority_queue \
-	heapmin union_find binary_tree
+	heapmin union_find binary_tree hash_table
 
 
 all: $(TARGETS)
@@ -29,9 +33,11 @@ union_find: ./union_find/union_find*.c
 binary_tree: DEFS=-DDATATYPE="struct BINARY_TREE_NODE *"
 binary_tree: ./binary_search_tree/binary_search_tree*.c ./queue/queue.c
 
+hash_table: ./hash_table/hash_table*.c ./linked_list/linked_list.c
+
 
 $(TARGETS):
-	gcc $^ -o ./tests/$@ $(DEFS)
+	gcc $^ -o ./tests/$@ $(DEFS) $(CCFLAGS)
 
 
 test:

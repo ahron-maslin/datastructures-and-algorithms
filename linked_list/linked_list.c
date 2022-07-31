@@ -1,25 +1,34 @@
 #include "linked_list.h"
 
-static node_t *init_node(int data){
+typedef struct LINKED_LIST
+{
+  void* data;
+  struct LINKED_LIST *next;
+} node_t;
+
+static node_t *init_node(void* data) {
   node_t *list = malloc(sizeof(struct LINKED_LIST));
-  list->data = data;
   list->next = NULL;
+  list->data = data;
 
   return list;
 }
 
-void destroy(node_t *list){
-  if (!list){
+void destroy(node_t *node, void(*data_destroy_fp)()) {
+  if (!node) {
     return;
   }
-  destroy(list->next);
-  free(list);
-  list = NULL;
+  if (data_destroy_fp) {
+    data_destroy_fp(node->data);
+  }
+  destroy(node->next, data_destroy_fp);
+  free(node);
+  node = NULL;
 }
 
-void push(node_t **head, int data){
+void push(node_t **head, void* data) {
   node_t *new_head = init_node(data);
-  if (*head == NULL){
+  if (*head == NULL) {
     *head = new_head;
     return;
   }
@@ -27,35 +36,36 @@ void push(node_t **head, int data){
   *head = new_head;
 }
 
-void push_last(node_t **head, int data){
-    node_t* next = init_node(data);
-    if (*head == NULL){
-      *head = next;
-    } else {
-      node_t *temp = *head;
-      while (temp->next != NULL)
-      {
-        temp = temp->next;
-      }
-      temp->next = next;
+void push_last(node_t **head, void* data) {
+  node_t* next = init_node(data);
+  if (*head == NULL) {
+    *head = next;
+  }
+  else {
+    node_t *temp = *head;
+    while (temp->next != NULL)
+    {
+      temp = temp->next;
     }
+    temp->next = next;
+  }
 }
 
-int peek_first(node_t *list) {
+void* peek_first(node_t *list) {
   return list->data;
 }
 
-int peek_last(node_t *list){
+void* peek_last(node_t *list) {
   node_t *trav = list;
-  while (trav->next != NULL){
+  while (trav->next != NULL) {
     trav = trav->next;
   }
   return trav->data;
 }
 
-int peek_at(node_t* list, int index) {
+void* peek_at(node_t* list, int index) {
   node_t* temp = list;
-  int data = -1;
+  void* data;
   if (list == NULL) {
     fprintf(stderr, "Cannot peek, list is NULL! ");
     exit(EXIT_FAILURE);
@@ -65,20 +75,20 @@ int peek_at(node_t* list, int index) {
   }
   for (int i = 0; i < index; i++) {
     if (temp->next == NULL) {
-      return -1;
+      return NULL;
     }
     temp = temp->next;
   }
   if (temp->next == NULL) {
-    return -1;
+    return NULL;
   }
   data = temp->data;
   return data;
 }
 
-int remove_first(node_t **head){
+void* remove_first(node_t **head) {
   node_t *first_node = NULL;
-  int data = -1;
+  void* data;
   if ((*head)->next == NULL)
   {
     data = (*head)->data;
@@ -92,45 +102,45 @@ int remove_first(node_t **head){
   return data;
 }
 
-int remove_last(node_t *list){
-  if (list->next == NULL){
-    int data = list->data;
+void* remove_last(node_t *list) {
+  if (list->next == NULL) {
+    void* data = list->data;
     free(list);
     return data;
   }
 
   node_t* trav = list;
-  while (trav->next->next != NULL){
+  while (trav->next->next != NULL) {
     trav = trav->next;
   }
-  int data = trav->next->data;
+  void* data = trav->next->data;
   free(trav->next);
   trav->next = NULL;
   return data;
 }
 
-int remove_at(node_t **list, int index){
+void* remove_at(node_t **list, int index) {
   node_t *current = *list;
   node_t *temp = NULL;
-  int data = -1;
+  void* data;
   if (list == NULL)
   {
     fprintf(stderr, "List is empty, deletion is not possible");
     exit(EXIT_FAILURE);
   }
-  if (index == 0){
+  if (index == 0) {
     return remove_first(list);
   }
 
-  for (int i = 0; i < index - 1; i++){
-    if (current->next == NULL){
-      return -1;
+  for (int i = 0; i < index - 1; i++) {
+    if (current->next == NULL) {
+      return NULL;
     }
     current = current->next;
   }
 
-  if (current->next == NULL){
-    return -1;
+  if (current->next == NULL) {
+    return NULL;
   }
 
   temp = current->next;
@@ -140,19 +150,19 @@ int remove_at(node_t **list, int index){
   return data;
 }
 
-void remove_value(node_t **list, int data){
+void remove_value(node_t **list, void* data2, bool(*cmp)(void* data1, void* data2)) {
   node_t *temp = *list, *prev;
-  if (temp != NULL && temp->data == data){
+  if (temp != NULL && cmp(temp->data, data2)) {
     *list = temp->next;
     free(temp);
     return;
   }
-  while (temp != NULL && temp->data != data){
+  while (temp != NULL && !cmp(temp->data, data2)) {
     prev = temp;
     temp = temp->next;
   }
 
-  if (temp == NULL){
+  if (temp == NULL) {
     return;
   }
 
@@ -160,16 +170,38 @@ void remove_value(node_t **list, int data){
   free(temp);
 }
 
-bool contains(node_t *list, int data) {
+bool contains(node_t *list, void* data2, bool (*comparator)(void* data1, void* data2)) {
   if (list == NULL) {
     return false;
   }
   node_t* temp = list;
   while (temp != NULL) {
-    if (temp->data == data) {
+    // we need to compare the structs that the data pointer points to
+    // not the data pointer itself
+    if (comparator(temp->data, data2)) {
       return true;
     }
     temp = temp->next;
   }
   return false;
+}
+
+int get_index(node_t* node, void* data) {
+  node_t* trav = node;
+  unsigned int i = 0;
+  while (trav) {
+    if (trav->data == data) {
+      return i;
+    }
+    i++;
+  }
+}
+
+node_t* get_next_node(node_t* list) {
+  return list->next;
+}
+
+
+void* node_data(node_t* node) {
+  return node->data;
 }

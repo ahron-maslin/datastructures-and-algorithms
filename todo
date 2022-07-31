@@ -1,2 +1,6 @@
-add comments
-heap / queue negative numbers
+1. add comments
+
+2. heap / queue negative numbers
+
+3. find a way to add to parent class of linked list, (by adding attributes to node struct OR pointing the data pointer to a key-value node),
+  without exposing the public interface of the "class"
